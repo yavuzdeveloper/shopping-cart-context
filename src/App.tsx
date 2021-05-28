@@ -93,22 +93,27 @@ const [state, setState] = useState(INITIAL_STATE);
   }
   
   
-  const remove = (book:Book) => setState({
-    ...state, 
-      cart: {items: state.cart.items.filter(item => item.book.id === book.id)}
-  });
+  const remove = (book:Book) => {
+  // setState({
+  //   ...state, 
+  //     cart: {items: state.cart.items.filter(item => item.book.id === book.id)}
+  // });
   
   
   
-    // let Items : CartItem[] = [];
-    // items.filter(item => {
-    //   if(item.book.id !== book.id)
-    //   Items.push(item)
-    // });                           //console.log("ITEMS:",Items);
-    // setState({  
-    //   ...state,
-    //     cart: {items:Items}
-    // });
+    let Items : CartItem[] = [];
+    items.forEach(item => {
+      if(item.book.id !== book.id){
+        Items.push(item);
+      }
+      
+    });
+    console.log("ITEMS:",Items);
+    
+    setState({  
+      ...state,
+        cart: {items:Items}
+    });
 
 
 // ***************************  
@@ -121,13 +126,13 @@ const [state, setState] = useState(INITIAL_STATE);
 //         cart: {items:items.splice(Index,Index)}
 //     });
 //*****************************************    
-  // items.map(item => item.book.id === book.id 
-  //     ? item.count = 0 : item )
+//   items.map(item => item.book.id === book.id ? item.count = 0 : item );
+// items=items.filter(item => item.count> 0 );
     
-  //   setState({   
-  //     ...state,
-  //       cart: {items}
-  //   });
+//     setState({   
+//       ...state,
+//         cart: {items}
+//     });
 //*************************** */    
   // items.map(item => {
   //   if(item.book.id !== book.id ){  
@@ -144,7 +149,7 @@ const [state, setState] = useState(INITIAL_STATE);
 //     cart: {items: items.filter(item => item.book.id !== book.id)}
 // });
 //***************************** */
-  
+}
 
   return (
     <BooksContext.Provider value={{state:INITIAL_STATE, addToCart, increase, decrease, remove}}>
