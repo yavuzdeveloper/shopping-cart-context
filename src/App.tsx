@@ -5,31 +5,21 @@ import Cart from './Cart';
 import { Route } from "react-router-dom";
 import { createContext, useState } from 'react';
 import { data } from './data';
-import { Book,  CartModel, CartItem } from './types';
-
+import { Book, CartModel, CartItem } from './types';
 
 
 export interface State { 
-    cart: CartModel, 
-    books: Book[],
-    //addToCart?: Function
+  cart: CartModel, 
+  books: Book[],
 }
 
-// const addToCart = (book:Book) => { alert(addToCart);
-//     //console.log("AA:", BooksContext);
-//   }
 
 export const INITIAL_STATE: State = {
-    books: data,
-    cart: {items: []},
-    //addToCart: addToCart
+  books: data,
+  cart: {items: []},
 }
 
 export interface ContextType { 
-  // state:{
-  //   cart: CartModel, 
-  //   books: Book[],
-  // },
   state: State,
   addToCart: Function,
   increase: Function,
@@ -37,21 +27,10 @@ export interface ContextType {
   remove: Function
 }
 
-// export const BooksContext = createContext({} as State);
 export const BooksContext = createContext({} as ContextType );
 
-
 const App = () => {
-//   const [books, setBooks] = useState((data) as Book[] );
-//   const [cart, setCart] = useState(([]) as CartModel[]);
-
-// const [state, setState] = useState({
-//   books: data as Book[],
-//   cart: []  as CartModel[]
-// });
-const [state, setState] = useState(INITIAL_STATE);
-
-  // let state = INITIAL_STATE;
+  const [state, setState] = useState(INITIAL_STATE);
   let items = state.cart.items;
 
   const addToCart = (book:Book) => {
@@ -92,47 +71,37 @@ const [state, setState] = useState(INITIAL_STATE);
     });
   }
   
-  
   const remove = (book:Book) => {
-  // setState({
-  //   ...state, 
-  //     cart: {items: state.cart.items.filter(item => item.book.id === book.id)}
-  // });
-  
-  
-  
-    let Items : CartItem[] = [];
+    let itemToRemove: CartItem = items[0];
     items.forEach(item => {
-      if(item.book.id !== book.id){
-        Items.push(item);
+      if(item.book.id === book.id){
+        itemToRemove = item;
       }
-      
-    });
-    console.log("ITEMS:",Items);
-    
-    setState({  
-      ...state,
-        cart: {items:Items}
-    });
+    })
+    let indexOf = items.indexOf(itemToRemove);
+    items.splice(indexOf, 1);
 
+      setState({   
+      ...state,
+        cart: {items}
+      });
 
 // ***************************  
-//   let Index:number = items.findIndex(item => item.book.id === book.id);
-//   console.log("İNdex:", Index);
-//   console.log("İNdex22:", items.splice(Index,Index))
-
-//     setState({  
-//       ...state,
-//         cart: {items:items.splice(Index,Index)}
-//     });
+  // let Index:number = items.findIndex(item => item.book.id === book.id);
+  //   setState({  
+  //     ...state,
+  //       cart: {items:items.splice(Index,1)}
+  //   });
 //*****************************************    
-//   items.map(item => item.book.id === book.id ? item.count = 0 : item );
-// items=items.filter(item => item.count> 0 );
-    
-//     setState({   
-//       ...state,
-//         cart: {items}
-//     });
+ // let Items : CartItem[] = [];
+    // items.filter(item => {
+    //   if(item.book.id !== book.id)
+    //   Items.push(item)
+    // });                           
+    // setState({  
+    //   ...state,
+    //     cart: {items:Items}
+    // });
 //*************************** */    
   // items.map(item => {
   //   if(item.book.id !== book.id ){  
@@ -156,10 +125,6 @@ const [state, setState] = useState(INITIAL_STATE);
     <div className="App">
       <header className="App-header">
         <h3>Shopping Cart with Context API
-          {/* <img
-          src="https://avatars3.githubusercontent.com/u/60869810?v=4"
-          alt="shopping cart with react"
-          /> */}
           <img
           src="https://sdtimes.com/wp-content/uploads/2018/09/1_JsyV8lXMuTbRVLQ2FPYWAg-490x490.png"
           alt="shopping cart typescript"

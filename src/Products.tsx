@@ -1,23 +1,12 @@
 import './App.css';
 import { Link } from "react-router-dom";
-//import { Book, CartModel } from './types';
 import { BooksContext } from './App';
 import { useContext } from 'react';
 
 
-// export interface State { 
-//     cart: CartModel, 
-//     books: Book[],
-//     // addToCart: Function
-// }
-
 const Products = () => { 
   const context = useContext(BooksContext)
-    //console.log("CONTEXT.books:",context.state.books);
-    //onsole.log("CONTEXT.addToCart:",context.addToCart);
-    //console.log("CONTEXT:",context.state);
-
-
+  
   return (      
     <div>
       <h3>
