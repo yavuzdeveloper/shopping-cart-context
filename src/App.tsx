@@ -85,39 +85,6 @@ const App = () => {
       ...state,
         cart: {items}
       });
-
-// ***************************  
-  // let Index:number = items.findIndex(item => item.book.id === book.id);
-  //   setState({  
-  //     ...state,
-  //       cart: {items:items.splice(Index,1)}
-  //   });
-//*****************************************    
- // let Items : CartItem[] = [];
-    // items.filter(item => {
-    //   if(item.book.id !== book.id)
-    //   Items.push(item)
-    // });                           
-    // setState({  
-    //   ...state,
-    //     cart: {items:Items}
-    // });
-//*************************** */    
-  // items.map(item => {
-  //   if(item.book.id !== book.id ){  
-  //     setState({
-  //       ...state,
-  //         cart: {items}
-  //     });
-  //   }
-  // })
-
-//*************************** */
-// setState({
-//   ...state,
-//     cart: {items: items.filter(item => item.book.id !== book.id)}
-// });
-//***************************** */
 }
 
   return (

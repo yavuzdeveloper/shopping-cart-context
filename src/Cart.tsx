@@ -24,7 +24,6 @@ const Cart = () => {
                    <h3>Your Cart Empty</h3>
                </div>
                }
-                {/* {context.state.cart.items.filter(item => item.count>0).map((item:CartItem) => ( */}
                 {context.state.cart.items.map((item:CartItem) => (
                 <div className="book"  key={item.book.id}>
                     <img src={item.book.image} alt={item.book.name}  />
