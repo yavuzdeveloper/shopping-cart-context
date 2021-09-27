@@ -17,7 +17,7 @@ const Products = () => {
       </h3>
       <div>
         {context.state.books.map(book => (
-          <div className="book">
+          <div className="book" key={book.id}>
             <img src={book.image} alt={book.name} />
               <div className="bookContent"  key={book.id}>
                 <h4>{book.name}</h4>
